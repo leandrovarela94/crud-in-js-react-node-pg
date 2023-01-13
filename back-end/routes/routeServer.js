@@ -2,6 +2,8 @@ const express = require("express");
 
 const cors = require("cors");
 
+const get = require(".services");
+
 const router = express.Router();
 
 router.use(cors());
@@ -9,7 +11,7 @@ router.use(cors());
 router.use(express.json());
 
 router.get("/contacts", (req, res) => {
-  return res.json({ message: "Create" });
+  return res.json(get);
 });
 
 router.get("/contacts/:id", (req, res) => {

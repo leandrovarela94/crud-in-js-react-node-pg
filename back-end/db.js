@@ -1,6 +1,6 @@
-const pg = require("pg");
+const { Client } = require("pg");
 
-const db = pg.Client({
+const db = new Client({
   user: "postgres",
   host: "localhost",
   database: "contacts",
