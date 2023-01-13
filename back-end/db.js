@@ -15,3 +15,5 @@ pool.connect((err) => {
     console.log("connected in database the varelinha");
   }
 });
+
+module.exports = pool;
