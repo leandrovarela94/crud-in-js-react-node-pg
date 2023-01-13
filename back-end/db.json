@@ -1,0 +1,28 @@
+[
+
+    {
+      "id": 1,
+      "name": "LEANDRO VARELA PEREIRA",
+      "phone": "+55(21) 99999 - 9999",
+      "email": "varela@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "LUCAS VARELA PEREIRA",
+      "phone": "+55(21) 99999 - 9999",
+      "email": "lucas@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "ROBERT VARELA PEREIRA",
+      "phone": "+55(21) 99999 - 9999",
+      "email": "robert@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "JUNIOR VARELA PEREIRA",
+      "phone": "+55(21) 99999 - 9999",
+      "email": "melynx@gmail.com"
+    }
+  
+  ]
