@@ -1,8 +1,6 @@
 const express = require("express");
-const client = Pool;
 
 const cors = require("cors");
-const { Pool } = require("pg");
 
 const router = express.Router();
 
