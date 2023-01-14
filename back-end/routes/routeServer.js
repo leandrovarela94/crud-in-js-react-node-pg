@@ -13,22 +13,26 @@ router.use(express.json());
 router.get("/contacts", (req, res) => {
   async function getContactsDb() {
     const resultQuery = await database.query("SELECT * FROM list_contacts lc ");
-
-    return resultQuery.rows;
+    const resultFinal = resultQuery.rows;
+    console.log(resultFinal);
+    return resultFinal;
   }
 
   return res.json(getContactsDb());
 });
 
-router.get("/contacts/", (req, res) => {
+router.get("/contacts/:id", (req, res) => {
   const { id } = req.params;
+
+  const x = parseInt(id);
 
   async function getOneContactsDb() {
     const resultQuery = await database.query(
       "SELECT id = ($1) FROM list_contacts ",
-      [id]
+      [x]
     );
-    return resultQuery.rows;
+    console.log(resultQuery);
+    return resultQuery.oid;
   }
   getOneContactsDb();
   return res.json(get);
@@ -38,7 +42,7 @@ router.post("/contacts", (req, res) => {
   const { name, phone, email } = req.body;
 
   async function postContactsDb() {
-    const resultQuery = await database.query(
+    await database.query(
       "INSERT INTO list_contacts (name,phone,email) VALUES ($1,$2,$3)",
       [name, phone, email]
     );
@@ -53,7 +57,7 @@ router.put("/contacts/:id", (req, res) => {
   const { name, phone, email } = req.body;
 
   async function updateContactsDb() {
-    const resultQuery = await database.query(
+    await database.query(
       "UPDATE list_contacts set (name,phone,email) VALUES ($1,$2,$3) WHERE id = ($4)",
       [name, phone, email, id]
     );
@@ -66,10 +70,7 @@ router.delete("/contacts/:id", (req, res) => {
   const { id } = req.params;
 
   async function deleteContactsDb() {
-    const resultQuery = await database.query(
-      "DELETE FROM list_contacts WHERE id = ($1)",
-      [id]
-    );
+    await database.query("DELETE FROM list_contacts WHERE id = ($1)", [id]);
   }
   deleteContactsDb();
   return res.json({ message: "Contact Deleted " });
