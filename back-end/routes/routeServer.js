@@ -12,12 +12,14 @@ router.use(express.json());
 
 router.get("/contacts", (req, res) => {
   async function getContactsDb() {
-    const resultQuery = await database.query("SELECT * FROM list_contacts lc ");
-    const resultFinal = resultQuery.rows;
-    console.log(resultFinal);
-    return resultFinal;
-  }
+    const resultQuery = await database.query({
+      rowMode: "object",
+      text: "SELECT * FROM list_contacts lc",
+    });
+    console.log(resultQuery.rows);
 
+    return resultQuery.rows;
+  }
   return res.json(getContactsDb());
 });
 
@@ -31,11 +33,11 @@ router.get("/contacts/:id", (req, res) => {
       "SELECT id = ($1) FROM list_contacts ",
       [x]
     );
-    console.log(resultQuery);
-    return resultQuery.oid;
+
+    return resultQuery.rows;
   }
-  getOneContactsDb();
-  return res.json(get);
+
+  return res.json(getOneContactsDb());
 });
 
 router.post("/contacts", (req, res) => {

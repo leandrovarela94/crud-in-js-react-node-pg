@@ -18,6 +18,19 @@ const ContactRenders = () => {
   const [refresh, setRefresh] = useState(false);
   const [load, setLoad] = useState(true);
 
+  const getContacts = () => {
+    fetch("http://localhost:5200/contacts/", {
+      method: "GET",
+    })
+      .then((resp) => resp.json())
+      .then((data) => {
+        setContacts(data);
+      })
+      .finally(() => {
+        setLoad(false);
+      });
+  };
+
   const createContact = () => {
     const { name, phone, email } = currentContact;
 
@@ -37,19 +50,6 @@ const ContactRenders = () => {
     })
       .then(() => {
         setRefresh((prev) => !prev);
-      })
-      .finally(() => {
-        setLoad(false);
-      });
-  };
-
-  const getContacts = () => {
-    fetch("http://localhost:5200/contacts/", {
-      method: "GET",
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        setContacts(data);
       })
       .finally(() => {
         setLoad(false);
