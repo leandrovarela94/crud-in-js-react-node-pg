@@ -8,7 +8,7 @@ const db = new Client({
   port: 5432,
 });
 
-pool.connect((err) => {
+db.connect((err) => {
   if (err) {
     console.error("connection error", err.stack);
   } else {
