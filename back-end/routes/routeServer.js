@@ -3,7 +3,6 @@ const express = require("express");
 const database = require("../db");
 
 const cors = require("cors");
-const { response } = require("express");
 
 const router = express.Router();
 
