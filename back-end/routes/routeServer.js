@@ -1,8 +1,8 @@
 const express = require("express");
 
-const database = require("../services/services");
-
 const cors = require("cors");
+
+const database = require("../services/services");
 
 const router = express.Router();
 
@@ -11,19 +11,15 @@ router.use(cors());
 router.use(express.json());
 
 router.get("/contacts", (req, res) => {
-  const response = database.getContactsDb();
-
-  return res.status(200).json(response);
+  return res.json(database.getContactsDb());
 });
 
 router.get("/contacts/:id", (req, res) => {
   const { id } = req.params;
 
-  const idFinal = parseInt(id);
+  database.getOneContactsDb(id);
 
-  const response = database.getOneContactsDb(idFinal);
-
-  return res.status(200).json(response);
+  return res.json(console.log(database.getOneContactsDb(id)));
 });
 
 router.post("/contacts", (req, res) => {
@@ -31,7 +27,7 @@ router.post("/contacts", (req, res) => {
 
   database.postContactsDb(name, phone, email);
 
-  return res.status(200).json({ message: "Contact created" });
+  return res.json({ message: "Contact created" });
 });
 
 router.put("/contacts/:id", (req, res) => {
@@ -41,7 +37,7 @@ router.put("/contacts/:id", (req, res) => {
 
   database.updateContactsDb(name, phone, email, id);
 
-  return res.status(200).json({ message: "Contact updated" });
+  return res.json({ message: "Contact updated" });
 });
 
 router.delete("/contacts/:id", (req, res) => {
@@ -49,7 +45,7 @@ router.delete("/contacts/:id", (req, res) => {
 
   database.deleteContactsDb(id);
 
-  return res.status(200).json({ message: "Contact deleted " });
+  return res.json({ message: "Contact deleted " });
 });
 
 module.exports = router;

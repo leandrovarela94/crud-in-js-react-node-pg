@@ -2,7 +2,7 @@ const database = require("../db");
 
 async function getContactsDb() {
   const resultQuery = database.query("SELECT * FROM list_contacts lc");
-
+  console.log(resultQuery.rows);
   return resultQuery.rows;
 }
 
@@ -26,7 +26,7 @@ async function updateContactsDb(name, phone, email, id) {
     [name, phone, email, id]
   );
 }
-async function deleteContactsDb() {
+async function deleteContactsDb(id) {
   await database.query("DELETE FROM list_contacts WHERE id = ($1)", [id]);
 }
 
