@@ -1,6 +1,6 @@
-const { Pool } = require("pg");
+const { Client } = require("pg");
 
-const db = new Pool({
+const db = new Client({
   user: "postgres",
   host: "localhost",
   database: "contacts",
