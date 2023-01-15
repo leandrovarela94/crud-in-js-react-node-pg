@@ -11,7 +11,11 @@ router.use(cors());
 router.use(express.json());
 
 router.get("/contacts", (req, res) => {
-  return res.json(database.getContactsDb());
+  const promise = database.getContactsDb();
+
+  console.log(promise);
+  //{ message: "Sucess, get all contacts" }
+  return res.json(promise);
 });
 
 router.get("/contacts/:id", (req, res) => {
@@ -19,7 +23,7 @@ router.get("/contacts/:id", (req, res) => {
 
   database.getOneContactsDb(id);
 
-  return res.json(console.log(database.getOneContactsDb(id)));
+  return res.json({ message: "Sucess, get one contact" });
 });
 
 router.post("/contacts", (req, res) => {

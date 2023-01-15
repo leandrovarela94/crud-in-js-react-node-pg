@@ -1,17 +1,20 @@
 const database = require("../db");
 
 async function getContactsDb() {
-  const resultQuery = database.query("SELECT * FROM list_contacts lc");
-  console.log(resultQuery.rows);
-  return resultQuery.rows;
-}
+  const resultQuery = await database.query("SELECT * FROM list_contacts lc");
 
+  const response = resultQuery.rows;
+
+  return response;
+}
 async function getOneContactsDb(id) {
   const resultQuery = await database.query(
     "SELECT id = ($1) FROM list_contacts ",
     [id]
   );
-  return resultQuery.rows;
+  const response = resultQuery.rows;
+
+  return response;
 }
 
 async function postContactsDb(name, phone, email) {
