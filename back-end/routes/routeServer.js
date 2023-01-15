@@ -13,17 +13,20 @@ router.use(express.json());
 router.get("/contacts", (req, res) => {
   const promise = database.getContactsDb();
 
-  console.log(promise);
+  const response = promise.then((result) => result);
+
   //{ message: "Sucess, get all contacts" }
-  return res.json(promise);
+  return res.json(response);
 });
 
 router.get("/contacts/:id", (req, res) => {
   const { id } = req.params;
 
-  database.getOneContactsDb(id);
+  const promise = database.getOneContactsDb(id);
 
-  return res.json({ message: "Sucess, get one contact" });
+  const response = promise.then((result) => result);
+  //{ message: "Sucess, get one contacts" }
+  return res.json(response);
 });
 
 router.post("/contacts", (req, res) => {
