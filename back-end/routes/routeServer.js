@@ -35,9 +35,11 @@ router.post("/contacts", (req, res) => {
 router.put("/contacts/:id", (req, res) => {
   const { id } = req.params;
 
+  const idFinal = parseInt(id);
+
   const { name, phone, email } = req.body;
 
-  database.updateContactsDb(name, phone, email, id);
+  database.updateContactsDb(name, phone, email, idFinal);
 
   return res.json({ message: "Contact updated" });
 });

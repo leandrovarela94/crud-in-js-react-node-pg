@@ -9,10 +9,9 @@ async function getContactsDb() {
 }
 
 async function getOneContactsDb(id) {
-  const resultQuery = await database.query(
-    "SELECT id = ($1) FROM list_contacts ",
-    [id]
-  );
+  const query = `SELECT * FROM list_contacts WHERE id = ${id}`;
+
+  const resultQuery = await database.query(query);
 
   const response = resultQuery.rows;
 
@@ -26,9 +25,11 @@ async function postContactsDb(name, phone, email) {
   );
 }
 async function updateContactsDb(name, phone, email, id) {
-  await database.query(
-    `UPDATE list_contacts set name = ${name}, phone = ${phone}, email = ${email} WHERE id = (${id})`
-  );
+  const query = `UPDATE list_contacts set name = '${name}', phone = '${phone}', email = '${email}' WHERE id = (${id})`;
+
+  console.log("Query:", query);
+
+  await database.query(query);
 }
 async function deleteContactsDb(id) {
   await database.query("DELETE FROM list_contacts WHERE id = ($1)", [id]);
