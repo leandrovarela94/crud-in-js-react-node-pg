@@ -33,7 +33,7 @@ async function updateContactsDb(name, phone, email, id) {
 }
 
 async function deleteContactsDb(id) {
-  const query = `DELETE FROM list_contacts WHERE id = id ;`;
+  const query = `DELETE FROM list_contacts WHERE id = ${id} ;`;
   await database.query(query);
 }
 
