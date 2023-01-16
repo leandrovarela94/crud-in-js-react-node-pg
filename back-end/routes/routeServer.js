@@ -10,22 +10,17 @@ router.use(cors());
 
 router.use(express.json());
 
-router.get("/contacts", (req, res) => {
-  const promise = database.getContactsDb();
+router.get("/contacts", async (req, res) => {
+  const response = await database.getContactsDb();
 
-  const response = promise.then((result) => result);
-
-  //{ message: "Sucess, get all contacts" }
   return res.json(response);
 });
 
-router.get("/contacts/:id", (req, res) => {
+router.get("/contacts/:id", async (req, res) => {
   const { id } = req.params;
 
-  const promise = database.getOneContactsDb(id);
+  const response = await database.getOneContactsDb(id);
 
-  const response = promise.then((result) => result);
-  //{ message: "Sucess, get one contacts" }
   return res.json(response);
 });
 
