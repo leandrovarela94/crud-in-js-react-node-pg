@@ -1,7 +1,9 @@
 const database = require("../db");
 
 async function getContactsDb() {
-  const resultQuery = await database.query("SELECT * FROM list_contacts lc");
+  const query = "SELECT * FROM list_contacts lc ;";
+
+  const resultQuery = await database.query(query);
 
   const response = resultQuery.rows;
 
@@ -9,7 +11,7 @@ async function getContactsDb() {
 }
 
 async function getOneContactsDb(id) {
-  const query = `SELECT * FROM list_contacts WHERE id = ${id}`;
+  const query = `SELECT * FROM list_contacts WHERE id = ${id} ;`;
 
   const resultQuery = await database.query(query);
 
@@ -19,20 +21,20 @@ async function getOneContactsDb(id) {
 }
 
 async function postContactsDb(name, phone, email) {
-  await database.query(
-    "INSERT INTO list_contacts (name,phone,email) VALUES ($1,$2,$3)",
-    [name, phone, email]
-  );
-}
-async function updateContactsDb(name, phone, email, id) {
-  const query = `UPDATE list_contacts set name = '${name}', phone = '${phone}', email = '${email}' WHERE id = (${id})`;
-
-  console.log("Query:", query);
+  const query = `INSERT INTO list_contacts (name,phone,email) VALUES ('${name}','${phone}','${email}');`;
 
   await database.query(query);
 }
+
+async function updateContactsDb(name, phone, email, id) {
+  const query = `UPDATE list_contacts set name = '${name}', phone = '${phone}', email = '${email}' WHERE id = (${id});`;
+
+  await database.query(query);
+}
+
 async function deleteContactsDb(id) {
-  await database.query("DELETE FROM list_contacts WHERE id = ($1)", [id]);
+  const query = `DELETE FROM list_contacts WHERE id = id ;`;
+  await database.query(query);
 }
 
 module.exports = {
