@@ -2,25 +2,33 @@
 
     - Simple schedule for contacts
 
-# Iniciate app
+# Iniciate Front-end
 
     - npm start
 
-# Iniciate Server
+# Iniciate Back-end
 
-    - npm nodemon
+    - npm start
 
 # Dependecies utilized
 
-- npm install cors
-- npm install nodemon
-- npm install express
-- npm install pg
+- cors
+- nodemon
+- express
+- pg
 
   _---- Materials UI------_
 
-- npm install material-react-table @mui/material @mui/icons-material @emotion/react @emotion/style
+- @mui/material
 
-- npm install material-react-table @mui/x-data-grid
-- npm install material-react-table @mui/x-data-grid-pro
-- npm install material-react-table @mui/x-data-grid-generator
+- @mui/icons-material
+
+- @emotion/react
+
+- @emotion/style
+
+- @mui/x-data-grid
+
+- @mui/x-data-grid-pro
+
+- @mui/x-data-grid-generator
